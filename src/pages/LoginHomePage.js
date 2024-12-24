@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
 
 const LoginHomePage = () => {
     // UseEffect to dynamically load external styles and scripts
@@ -203,9 +205,9 @@ const LoginHomePage = () => {
                             </ul>
                             <ul class="navbar-nav nav-right ml-auto">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ti ti-email"></i>
-                                    </a>
+                                   
+                                        <LogoutButton />
+                                   
                                     <div class="dropdown-menu extended animated fadeIn" aria-labelledby="navbarDropdown">
                                         <ul>
                                             <li class="dropdown-header bg-gradient p-4 text-white text-left">Messages
