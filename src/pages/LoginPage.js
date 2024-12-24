@@ -112,7 +112,7 @@ function LoginPage() {
                         </div>
                         <div className="col-12 mt-3">
                           <button className="btn btn-primary text-uppercase w-100">
-                            Sign In
+                          <Link to="/login-home"> Sign In </Link>
                           </button>
                         </div>
                         <div className="col-12 mt-3 text-center">
