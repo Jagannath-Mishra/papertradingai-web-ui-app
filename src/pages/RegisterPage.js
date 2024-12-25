@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function RegisterPage() {
+  const navigate = useNavigate(); // This returns a function named 'navigate'
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -104,6 +105,12 @@ function RegisterPage() {
           confirmPassword: "",
           termsAccepted: false,
         });
+
+        // Wait 2 seconds, then redirect to login
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+
       } catch (error) {
         setErrors({ general: error.response?.data?.error || "Registration failed" });
         setSuccessMessage("");

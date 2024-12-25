@@ -17,21 +17,24 @@ function LoginPage() {
         email,
         password,
       });
-// Get the token from the response
-const token = response.data.token;
-
-// Set expiration time (1 hour in this case)
-const expirationTime = Date.now() + 3600 * 12000; // 12 hour expiration time
+// Extract token & user details from response
+const { token, user } = response.data;
+console.log("user:"+ JSON.stringify(user))
+// Set expiration time (24 hour in this case)
+const expirationTime = Date.now() + 3600 * 24000; // 24 hour expiration time
 
 // Store the JWT token and expiration time in the appropriate storage
 if (rememberMe) {
   // Store in localStorage if "Remember Me" is checked
   localStorage.setItem("jwt_token", token);
-  localStorage.setItem("token_expiration", expirationTime);
+  localStorage.setItem("token_expiration", expirationTime); // 1 day expiration time for local
+  localStorage.setItem("user_details", JSON.stringify(user));
+
 } else {
   // Store in sessionStorage if "Remember Me" is unchecked
   sessionStorage.setItem("jwt_token", token);
-  sessionStorage.setItem("token_expiration", expirationTime);
+  sessionStorage.setItem("token_expiration", (expirationTime*7)); // 7 day expiration time
+  sessionStorage.setItem("user_details", JSON.stringify(user));
 }
 
 // Redirect the user to the home page or a protected route

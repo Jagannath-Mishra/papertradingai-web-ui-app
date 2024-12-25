@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
 const LoginHomePage = () => {
+    const [user, setUser] = useState(null);
+
     // UseEffect to dynamically load external styles and scripts
       useEffect(() => {
+        
         // Load Google Fonts
         const googleFont = document.createElement("link");
         googleFont.href =
@@ -36,7 +38,15 @@ const LoginHomePage = () => {
         appScript.src = "/assets/js/app.js";
         appScript.async = true;
         document.body.appendChild(appScript);
-    
+     // Retrieve user details from sessionStorage or localStorage
+    const storedUser =
+      sessionStorage.getItem("user_details") ||
+      localStorage.getItem("user_details");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+        
         return () => {
           // Clean up: remove dynamically added elements
           document.head.removeChild(googleFont);
@@ -47,6 +57,21 @@ const LoginHomePage = () => {
         };
       }, []);
     
+      useEffect(() => {
+        // Retrieve user details from sessionStorage or localStorage
+        const storedUser =
+          sessionStorage.getItem("user_details") ||
+          localStorage.getItem("user_details");
+    
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+      }, []);
+    
+      // If no user found, show a fallback or prompt the user to log in
+      if (!user) {
+        return <p>Loading user info or not logged in...</p>;
+      }
 
   return (
     <div class="app">
@@ -206,7 +231,7 @@ const LoginHomePage = () => {
                             <ul class="navbar-nav nav-right ml-auto">
                                 <li class="nav-item dropdown">
                                    
-                                        <LogoutButton />
+                                        
                                    
                                     <div class="dropdown-menu extended animated fadeIn" aria-labelledby="navbarDropdown">
                                         <ul>
@@ -430,11 +455,12 @@ const LoginHomePage = () => {
                                         <div class="bg-gradient px-4 py-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="mr-1">
-                                                    <h4 class="text-white mb-0">Alice Williams</h4>
-                                                    <small class="text-white">Henry@example.com</small>
+                                                    <h4 class="text-white mb-0">{user.firstName} {user.lastName}</h4>
+                                                    <small class="text-white">{user.email}</small>
                                                 </div>
-                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
-                                                                class="zmdi zmdi-power"></i></a>
+                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> 
+                                                <LogoutButton />
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="p-4">

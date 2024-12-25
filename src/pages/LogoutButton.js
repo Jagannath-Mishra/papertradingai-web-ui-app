@@ -15,9 +15,8 @@ function LogoutButton() {
   };
 
   return (
-    <button className="btn btn-danger" onClick={handleLogout}>
-      Logout
-    </button>
+    
+<i class="zmdi zmdi-power" onClick={handleLogout}></i>
   );
 }
 

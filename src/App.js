@@ -6,13 +6,21 @@ import HomePage from "./pages/HomePage";
 import LoginHomePage from "./pages/LoginHomePage";
 import LandingPage from "./pages/LandingPage";
 import ProtectedRoute from "./component/ProtectedRout";
-
+import PublicRoute from "./component/PublicRout";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+        {/* Public route (login): If user is logged in, redirect to /login-home */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
 
         {/* Protect the '/login-home' route */}

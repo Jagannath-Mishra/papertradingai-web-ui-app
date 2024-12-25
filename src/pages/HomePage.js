@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function HomePage() {
+function CommingSoonPage() {
   // Dynamically load external styles and scripts
   useEffect(() => {
     const loadExternalResource = (type, attributes) => {
@@ -176,4 +176,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default CommingSoonPage;
