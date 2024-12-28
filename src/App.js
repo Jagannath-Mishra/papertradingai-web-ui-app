@@ -7,6 +7,11 @@ import LoginHomePage from "./pages/LoginHomePage";
 import LandingPage from "./pages/LandingPage";
 import ProtectedRoute from "./component/ProtectedRout";
 import PublicRoute from "./component/PublicRout";
+import PageNew from "./pages/PageNew";
+import StockSearch from "./pages/auth-pages/StockSearch";
+import './App.css'; // Importing the CSS file
+import StocDetails from "./pages/auth-pages/StocDetails";
+
 function App() {
   return (
     <Router>
@@ -29,6 +34,16 @@ function App() {
           element={
             <ProtectedRoute>
               <LoginHomePage />
+            </ProtectedRoute>
+          }
+        />
+         <Route path="/new-page" element={<ProtectedRoute>  <PageNew /> </ProtectedRoute>   }   />
+         <Route path="/stock-details/:symbol" element={<ProtectedRoute>  <StocDetails /> </ProtectedRoute>   }   />
+         <Route
+          path="/stock-search"
+          element={
+            <ProtectedRoute>
+              <StockSearch />
             </ProtectedRoute>
           }
         />
