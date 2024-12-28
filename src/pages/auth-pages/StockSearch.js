@@ -1,4 +1,5 @@
-import React, { useEffect, useState, navigate } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "bootstrap/dist/css/bootstrap.min.css";
 import LogoutButton from "../LogoutButton";
 import Footer from "../includes/Footer";
@@ -6,47 +7,40 @@ import LeftMenu from "../includes/LeftMenu";
 import MegaMenu from "../includes/MegaMenu";
 
 const StockSearch = () => {
-    
   const [user, setUser] = useState(null);
-
-  // Search-related states
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // 1. Load external resources and fetch user data
   useEffect(() => {
-    // Load Google Fonts
+    // Load external resources logic...
     const googleFont = document.createElement("link");
     googleFont.href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
     googleFont.rel = "stylesheet";
     document.head.appendChild(googleFont);
 
-    // Load Vendors CSS
     const vendorsStyle = document.createElement("link");
     vendorsStyle.href = "/assets/css/vendors.css";
     vendorsStyle.rel = "stylesheet";
     document.head.appendChild(vendorsStyle);
 
-    // Load App CSS
     const appStyle = document.createElement("link");
     appStyle.href = "/assets/css/style.css";
     appStyle.rel = "stylesheet";
     document.head.appendChild(appStyle);
 
-    // Load vendors.js
     const vendorsScript = document.createElement("script");
     vendorsScript.src = "/assets/js/vendors.js";
     vendorsScript.async = true;
     document.body.appendChild(vendorsScript);
 
-    // Load app.js
     const appScript = document.createElement("script");
     appScript.src = "/assets/js/app.js";
     appScript.async = true;
     document.body.appendChild(appScript);
 
-    // Retrieve user details from sessionStorage or localStorage
     const storedUser =
       sessionStorage.getItem("user_details") ||
       localStorage.getItem("user_details");
@@ -55,7 +49,6 @@ const StockSearch = () => {
       setUser(JSON.parse(storedUser));
     }
 
-    // Cleanup on unmount
     return () => {
       document.head.removeChild(googleFont);
       document.head.removeChild(vendorsStyle);
@@ -65,9 +58,8 @@ const StockSearch = () => {
     };
   }, []);
 
-  // 2. Fetch suggestions whenever searchTerm changes (and user is loaded)
+  // 2. Fetch suggestions when searchTerm changes
   useEffect(() => {
-    // If no user or search term is too short, clear suggestions
     if (!user || searchTerm.length < 2) {
       setSuggestions([]);
       setShowDropdown(false);
@@ -76,9 +68,7 @@ const StockSearch = () => {
 
     const fetchSuggestions = async () => {
       try {
-        // Use the user's API key if you store it in user.apiKey
-        // const apiKey = user.apiKey || "YOUR_API_KEY";
-        const apiKey = "047f2bcd17e1f22ffb3184469f8cdfc13991d53ad2ff07da71442a71d0ceaeb0"; // Replace with your actual logic or stored value
+        const apiKey = "047f2bcd17e1f22ffb3184469f8cdfc13991d53ad2ff07da71442a71d0ceaeb0";
 
         const response = await fetch(
           `http://localhost:8000/search?query=${encodeURIComponent(searchTerm)}&limit=10`,
@@ -95,7 +85,7 @@ const StockSearch = () => {
           throw new Error("Failed to fetch suggestions");
         }
 
-        const data = await response.json(); // expected { results: [] }
+        const data = await response.json();
         setSuggestions(data.results || []);
         setShowDropdown(true);
       } catch (error) {
@@ -108,10 +98,10 @@ const StockSearch = () => {
     fetchSuggestions();
   }, [searchTerm, user]);
 
-  // If no user found, show a fallback or prompt for login
   if (!user) {
     return <p>Loading user info or not logged in...</p>;
   }
+
     return (
         <div class="app">
             <div class="app-wrap">
