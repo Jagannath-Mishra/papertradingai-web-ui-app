@@ -119,7 +119,13 @@ const StocDetails = () => {
     return (
         <div class="app">
             <div class="app-wrap">
-
+                {/* <div class="loader">
+                    <div class="h-100 d-flex justify-content-center">
+                        <div class="align-self-center">
+                            <img src="../assets/img/loader/loader.svg" alt="loader" />
+                        </div>
+                    </div>
+                </div> */}
                 <header class="app-header top-bar">
 
                     <nav class="navbar navbar-expand-md">
@@ -433,7 +439,7 @@ const StocDetails = () => {
 
                         <div class="container-fluid">
                             <div class="header mb-4 text-center">
-                                <h1 class="bg-info text-white">{stockData.companyName} Stock Details</h1>
+                                <h1 class="bg-primary text-white">{stockData.companyName} Stock Details</h1>
                             </div>
 
                             <div class="col-12 mb-30">
@@ -460,23 +466,110 @@ const StocDetails = () => {
 
 
 
-                                                        <button class="btn btn-round btn-inverse-success float-end" data-toggle="modal" data-target="#defaultModal">Buy Now</button>
+                                                        <button class="btn btn-square btn-inverse-primary float-end" data-toggle="modal" data-target="#defaultModal">Buy Now</button>
 
                                                         <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Buy Stock</h5>
+                                                                        <h5 class="modal-title">Place Stock Buy Order</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        Woohoo, you're reading this text in a modal!
+                                                                        <div class="card">
+                                                                            <div class="card-header bg-light d-flex justify-content-between">
+                                                                                <h5 class="mb-0">{stockData.companyName}</h5>
+                                                                                <div>
+                                                                                    <span class="text-danger">{stockData?.lastPrice || "N/A"}</span>
+                                                                                    <small class="text-muted"> (-38.52%)</small>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <ul class="nav nav-tabs mb-3" id="orderTypeTab" role="tablist">
+                                                                                    <li class="nav-item">
+                                                                                        <a class="nav-link active" id="regular-tab" data-toggle="tab" href="#regular" role="tab">Regular</a>
+                                                                                    </li>
+
+                                                                                </ul>
+
+                                                                                <div class="tab-content">
+                                                                                    <div class="tab-pane fade show active" id="regular" role="tabpanel">
+                                                                                        <form>
+                                                                                            <div class="form-row">
+                                                                                                <div class="form-group col-md-6">
+                                                                                                    <label for="productType">Product Type</label>
+                                                                                                    <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                                                                                                        <label class="btn btn-outline-primary active">
+                                                                                                            <input type="radio" name="productType" id="intraday" checked /> Intraday
+                                                                                                        </label>
+                                                                                                        <label class="btn btn-outline-primary">
+                                                                                                            <input type="radio" name="productType" id="carryforward" /> Carry Forward
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="form-group col-md-3">
+                                                                                                    <label for="lots">Qty</label>
+                                                                                                    <input type="number" class="form-control" id="qty" placeholder="1" />
+
+                                                                                                </div>
+
+                                                                                                <div class="form-group col-md-3">
+                                                                                                    <label for="price">Price</label>
+                                                                                                    <input type="text" class="form-control" id="price" value={stockData?.lastPrice || 0.0} />
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group">
+                                                                                                <label>Price Type</label>
+                                                                                                <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                                                                                                    <label class="btn btn-outline-primary ">
+                                                                                                        <input type="radio" name="priceType" id="limit" /> Limit
+                                                                                                    </label>
+                                                                                                    <label class="btn btn-outline-primary active">
+                                                                                                        <input type="radio" name="priceType" id="market" checked /> Market
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group">
+                                                                                                <label for="slTriggerPrice">SL Trigger Price</label>
+                                                                                                <div class="input-group">
+                                                                                                    <input type="number" class="form-control" id="slTriggerPrice" placeholder="0" />
+                                                                                                    <div class="input-group-append">
+                                                                                                        <span class="input-group-text">%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <br />
+                                                                                                <label for="slTriggerPrice" >Take Profit Trigger Price</label>
+                                                                                                <div class="input-group">
+                                                                                                    <input type="number" class="form-control" id="tpTriggerPrice" placeholder="0" />
+                                                                                                    <div class="input-group-append">
+                                                                                                        <span class="input-group-text">%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                           
+
+                                                                                            <div class="d-flex justify-content-between">
+                                                                                                <div>
+                                                                                                    <p class="mb-0"><strong>Available Funds:</strong> ₹100000.09</p>
+                                                                                                    <p><strong>Total Charges:</strong> ₹0</p>
+                                                                                                </div>
+                                                                                                <button type="submit" class="btn btn-primary btn-lg">Place Buy Order</button>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                                        <button type="button" class="btn btn-success">Buy Stock</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
