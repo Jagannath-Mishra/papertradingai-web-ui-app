@@ -163,7 +163,7 @@ const Header = () => {
                   <ul>
                     <li class="dropdown-header bg-gradient p-4 text-white text-left font-20"> RS. 10,00,000.00 /-
                       <a href="#" class="float-right btn btn-square btn-inverse-light btn-xs m-0">
-                        <span class="font-13"> View all</span></a>
+                        <span class="font-13"><Link to="/wallet"> View all </Link></span></a>
                     </li>
                     <li class="dropdown-body min-h-240 nicescroll">
                       <ul class="scrollbar scroll_dark max-h-240">

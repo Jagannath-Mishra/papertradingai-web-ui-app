@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MegaMenu = () => {
   return (
@@ -9,49 +10,40 @@ const MegaMenu = () => {
     <div class="dropdown-menu mega-menu animated fadeIn" aria-labelledby="navbarDropdown">
         <div class="row no-gutters">
             <div class="col-sm-2 p-20">
-                <h4>UI Kit</h4>
+                <h4>Stock Market</h4>
                 <ul>
                     <li class="nav-link">
-                        <a href="ui-alerts.html">Alerts</a>
+                        <Link to="/stock-search">Stock Search </Link>
                     </li>
                     <li class="nav-link">
-                        <a href="ui-button.html">Buttons</a>
+                    <Link to="/portfolio">Portfolio</Link>
                     </li>
                     <li class="nav-link">
-                        <a href="ui-cards.html">Cards</a>
+                        <a href="ui-cards.html">Reports</a>
                     </li>
                     <li class="nav-link">
-                        <a href="ui-carousel.html">Carousel</a>
+                        <a href="ui-carousel.html">FNO</a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="ui-dropdowns.html">Dropdowns</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="ui-list-group.html">List Group</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="ui-modals.html">Modals</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="ui-progressbars.html">Progress Bars</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="ui-tabs.html">Tabs</a>
+                        <a href="ui-tabs.html">Ipo List</a>
                     </li>
                 </ul>
             </div>
             <div class="col-sm-2 p-20">
-                <h4>Pages</h4>
+                <h4>Cryptocurrency</h4>
                 <ul>
-                    <li class="nav-link">
-                        <a href="page-account-settings.html">Account Settings</a>
+                <li class="nav-link">
+                        <a href="page-gallery.html">Trade in Crypto</a>
                     </li>
                     <li class="nav-link">
-                        <a href="page-clients.html">Clients</a>
+                        <a href="page-account-settings.html">Portfolio</a>
                     </li>
                     <li class="nav-link">
-                        <a href="page-contacts.html">Contacts</a>
+                        <a href="page-clients.html">Transaction</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="page-contacts.html">Wallet</a>
                     </li>
                     <li class="nav-link">
                         <a href="page-gallery.html">Gallery</a>

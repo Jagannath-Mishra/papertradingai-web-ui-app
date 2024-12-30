@@ -11,6 +11,8 @@ import PageNew from "./pages/PageNew";
 import StockSearch from "./pages/auth-pages/StockSearch";
 import './App.css'; // Importing the CSS file
 import StocDetails from "./pages/auth-pages/StocDetails";
+import PortfolioPage from "./pages/auth-pages/PortfolioPage";
+import WalletPage from "./pages/auth-pages/WalletPage";
 
 function App() {
   return (
@@ -37,7 +39,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-         <Route path="/new-page" element={<ProtectedRoute>  <PageNew /> </ProtectedRoute>   }   />
+         <Route path="/portfolio" element={<ProtectedRoute>  <PortfolioPage /> </ProtectedRoute>   }   />
+         <Route path="/wallet" element={<ProtectedRoute>  <WalletPage /> </ProtectedRoute>   }   />
          <Route path="/stock-details/:symbol" element={<ProtectedRoute>  <StocDetails /> </ProtectedRoute>   }   />
          <Route
           path="/stock-search"
