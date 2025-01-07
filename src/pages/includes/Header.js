@@ -274,14 +274,20 @@ const Header = () => {
                     <div class="row mt-2">
                       <div class="col">
                         <a class="bg-light p-3 text-center d-block" href="#">
+                        <Link to="/wallet">
                           <i class="ti ti-wallet font-20 text-primary"></i>
+                          
                           <span class="d-block font-13 mt-2">My Wallet</span>
+                          </Link>
                         </a>
                       </div>
                       <div class="col">
                         <a class="bg-light p-3 text-center d-block" href="#">
+                        <Link to="/portfolio">
                           <i class="ti ti-bag font-20 text-primary"></i>
+            
                           <span class="d-block font-13 mt-2">My Portfolio</span>
+                          </Link>
                         </a>
                       </div>
                     </div>
